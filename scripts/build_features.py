@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 PROCESSED_DATA_DIR = os.path.join("data", "processed")
 MODELS_DIR = "models"
-VECTORIZER_PATH = os.path.join(MODELS_DIR, "tfidf_vectorizer.joblib")
+VECTORIZER_PATH = os.path.join(MODELS_DIR, "classical_ml", "tfidf_vectorizer.joblib")
 
 TFIDF_MAX_FEATURES = 50_000
 TFIDF_NGRAM_RANGE = (1, 2)
@@ -135,13 +135,13 @@ def save_features(
         models_dir: Directory for the vectorizer artifact.
     """
     os.makedirs(processed_dir, exist_ok=True)
-    os.makedirs(models_dir, exist_ok=True)
+    os.makedirs(os.path.join(models_dir, "classical_ml"), exist_ok=True)
 
     sp.save_npz(os.path.join(processed_dir, "X_train_tfidf.npz"), X_train)
     sp.save_npz(os.path.join(processed_dir, "X_val_tfidf.npz"), X_val)
     sp.save_npz(os.path.join(processed_dir, "X_test_tfidf.npz"), X_test)
 
-    vectorizer_path = os.path.join(models_dir, "tfidf_vectorizer.joblib")
+    vectorizer_path = os.path.join(models_dir, "classical_ml", "tfidf_vectorizer.joblib")
     joblib.dump(vectorizer, vectorizer_path)
 
     logger.info("Features saved to '%s', vectorizer to '%s'.", processed_dir, vectorizer_path)

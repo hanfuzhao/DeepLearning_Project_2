@@ -17,9 +17,10 @@ Common interface for every model:
     .load(path)          (classmethod) restore from disk
 
 Model artifacts saved at:
-    models/naive_baseline.joblib
-    models/tfidf_lr.joblib
-    models/distilbert/
+    models/naive_baseline/naive_baseline.joblib
+    models/classical_ml/tfidf_logistic_regression.joblib
+    models/classical_ml/tfidf_vectorizer.joblib
+    models/deep_learning/distilbert/
 
 Usage:
     python main.py train
@@ -424,7 +425,7 @@ class DistilBERTModel(BaseSarcasmModel):
 
     def __init__(
         self,
-        model_dir: str = os.path.join(MODELS_DIR, "distilbert"),
+        model_dir: str = os.path.join(MODELS_DIR, "deep_learning", "distilbert"),
     ) -> None:
         self.model_dir = model_dir
         self._tokenizer: Optional[DistilBertTokenizerFast] = None
@@ -628,7 +629,7 @@ def train_all_models(
     X_train_tfidf = sp.load_npz(os.path.join(processed_dir, "X_train_tfidf.npz"))
     X_val_tfidf = sp.load_npz(os.path.join(processed_dir, "X_val_tfidf.npz"))
     X_test_tfidf = sp.load_npz(os.path.join(processed_dir, "X_test_tfidf.npz"))
-    vectorizer = joblib.load(os.path.join(MODELS_DIR, "tfidf_vectorizer.joblib"))
+    vectorizer = joblib.load(os.path.join(MODELS_DIR, "classical_ml", "tfidf_vectorizer.joblib"))
 
     y_train = train["label"].values
     y_val = val["label"].values
@@ -643,7 +644,8 @@ def train_all_models(
     logger.info("=" * 60)
     naive = NaiveBaselineModel()
     naive.fit(X_train_tfidf, y_train)
-    naive.save(os.path.join(MODELS_DIR, "naive_baseline.joblib"))
+    os.makedirs(os.path.join(MODELS_DIR, "naive_baseline"), exist_ok=True)
+    naive.save(os.path.join(MODELS_DIR, "naive_baseline", "naive_baseline.joblib"))
     naive.plot_confusion_matrix(
         X_test_tfidf, y_test,
         title="Naive Baseline — Confusion Matrix",
@@ -661,7 +663,8 @@ def train_all_models(
     logger.info("=" * 60)
     tfidf_clf = TFIDFClassifierModel()
     tfidf_clf.fit(X_train_tfidf, y_train, cv=5)
-    tfidf_clf.save(os.path.join(MODELS_DIR, "tfidf_lr.joblib"))
+    os.makedirs(os.path.join(MODELS_DIR, "classical_ml"), exist_ok=True)
+    tfidf_clf.save(os.path.join(MODELS_DIR, "classical_ml", "tfidf_logistic_regression.joblib"))
     tfidf_clf.plot_confusion_matrix(
         X_test_tfidf, y_test,
         title="TF-IDF + Logistic Regression — Confusion Matrix",

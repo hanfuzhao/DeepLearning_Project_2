@@ -51,14 +51,17 @@ Cyberbullying frequently employs sarcasm and irony as cover — insults disguise
 │   ├── model.py                ← ★ ALL THREE MODELS defined here (see Section 3)
 │   └── experiment.py           ← training-size sensitivity analysis
 │
-├── models/                     ← trained model artifacts
-│   ├── naive_baseline.joblib   ← Model 1: Naive Baseline
-│   ├── tfidf_lr.joblib         ← Model 2: TF-IDF + Logistic Regression
-│   ├── tfidf_vectorizer.joblib ← TF-IDF vectorizer (required by Model 2)
-│   └── distilbert/             ← Model 3: fine-tuned DistilBERT weights
-│       ├── model.safetensors
-│       ├── config.json
-│       └── tokenizer.json
+├── models/                          ← trained model artifacts
+│   ├── naive_baseline/              ← Model 1: Naive Baseline
+│   │   └── naive_baseline.joblib
+│   ├── classical_ml/                ← Model 2: Classical ML
+│   │   ├── tfidf_logistic_regression.joblib
+│   │   └── tfidf_vectorizer.joblib
+│   └── deep_learning/               ← Model 3: Deep Learning
+│       └── distilbert/
+│           ├── model.safetensors
+│           ├── config.json
+│           └── tokenizer.json
 │
 ├── data/
 │   ├── raw/                    ← raw downloaded JSONL dataset
@@ -77,9 +80,9 @@ Cyberbullying frequently employs sarcasm and irony as cover — insults disguise
 
 | Model | Source Code | Trained Artifact |
 |-------|-------------|-----------------|
-| **Model 1: Naive Baseline** | `scripts/model.py` → class `NaiveBaselineModel` | `models/naive_baseline.joblib` |
-| **Model 2: Classical ML** | `scripts/model.py` → class `TFIDFClassifierModel` | `models/tfidf_lr.joblib` |
-| **Model 3: Deep Learning** | `scripts/model.py` → class `DistilBERTModel` | `models/distilbert/` |
+| **Model 1: Naive Baseline** | `scripts/model.py` → class `NaiveBaselineModel` | `models/naive_baseline/naive_baseline.joblib` |
+| **Model 2: Classical ML** | `scripts/model.py` → class `TFIDFClassifierModel` | `models/classical_ml/tfidf_logistic_regression.joblib` |
+| **Model 3: Deep Learning** | `scripts/model.py` → class `DistilBERTModel` | `models/deep_learning/distilbert/` |
 
 All three classes share a common interface (`fit`, `predict`, `predict_proba`, `evaluate`, `save`, `load`) defined in the abstract base class `BaseSarcasmModel` at the top of `scripts/model.py`.
 
@@ -164,14 +167,14 @@ Output:
 from scripts.model import DistilBERTModel, TFIDFClassifierModel, NaiveBaselineModel
 
 # Load the best model (DistilBERT)
-model = DistilBERTModel.load("models/distilbert")
+model = DistilBERTModel.load("models/deep_learning/distilbert")
 prob = model.predict_proba(["your text here"])[0]
 label = "SARCASTIC" if prob >= 0.5 else "NOT SARCASTIC"
 
 # Load classical ML model
 import joblib
-clf = TFIDFClassifierModel.load("models/tfidf_lr.joblib")
-vec = joblib.load("models/tfidf_vectorizer.joblib")
+clf = TFIDFClassifierModel.load("models/classical_ml/tfidf_logistic_regression.joblib")
+vec = joblib.load("models/classical_ml/tfidf_vectorizer.joblib")
 X = vec.transform(["your text here"])
 print(clf.predict(X))
 ```

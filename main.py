@@ -101,8 +101,8 @@ def cmd_predict(text: str) -> None:
     import joblib
     import scipy.sparse as sp
 
-    bert_path = os.path.join(MODELS_DIR, "distilbert")
-    tfidf_path = os.path.join(MODELS_DIR, "tfidf_lr.joblib")
+    bert_path = os.path.join(MODELS_DIR, "deep_learning", "distilbert")
+    tfidf_path = os.path.join(MODELS_DIR, "classical_ml", "tfidf_logistic_regression.joblib")
 
     cleaned = clean_text(text)
 
@@ -111,7 +111,7 @@ def cmd_predict(text: str) -> None:
         prob = float(model.predict_proba([cleaned])[0])
         model_used = "DistilBERT"
     elif os.path.exists(tfidf_path):
-        vectorizer = joblib.load(os.path.join(MODELS_DIR, "tfidf_vectorizer.joblib"))
+        vectorizer = joblib.load(os.path.join(MODELS_DIR, "classical_ml", "tfidf_vectorizer.joblib"))
         clf = TFIDFClassifierModel.load(tfidf_path)
         X = vectorizer.transform([cleaned])
         prob = float(clf.predict_proba(X)[0])
