@@ -1,0 +1,17 @@
+variant,model,accuracy,precision,recall,f1,auc,group
+full_pipeline,Naive Baseline,0.5246,0.0,0.0,0.0,0.5,preprocessing
+full_pipeline,TF-IDF + LR,0.8592,0.8455,0.8613,0.8533,0.935,preprocessing
+no_lowercase,Naive Baseline,0.5246,0.0,0.0,0.0,0.5,preprocessing
+no_lowercase,TF-IDF + LR,0.8592,0.8455,0.8613,0.8533,0.935,preprocessing
+keep_punctuation,Naive Baseline,0.5246,0.0,0.0,0.0,0.5,preprocessing
+keep_punctuation,TF-IDF + LR,0.8592,0.8455,0.8613,0.8533,0.935,preprocessing
+no_url_removal,Naive Baseline,0.5246,0.0,0.0,0.0,0.5,preprocessing
+no_url_removal,TF-IDF + LR,0.8592,0.8455,0.8613,0.8533,0.935,preprocessing
+raw_text,Naive Baseline,0.5246,0.0,0.0,0.0,0.5,preprocessing
+raw_text,TF-IDF + LR,0.8604,0.8442,0.8662,0.8551,0.936,preprocessing
+ngram_unigram,Naive Baseline,0.5246,0.0,0.0,0.0,0.5,ngram
+ngram_unigram,TF-IDF + LR,0.8501,0.8252,0.8687,0.8464,0.9244,ngram
+ngram_bigram,Naive Baseline,0.5246,0.0,0.0,0.0,0.5,ngram
+ngram_bigram,TF-IDF + LR,0.8592,0.8455,0.8613,0.8533,0.935,ngram
+ngram_trigram,Naive Baseline,0.5246,0.0,0.0,0.0,0.5,ngram
+ngram_trigram,TF-IDF + LR,0.8613,0.8488,0.8618,0.8553,0.9354,ngram

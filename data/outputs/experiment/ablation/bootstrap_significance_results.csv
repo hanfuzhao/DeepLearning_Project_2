@@ -1,0 +1,2 @@
+f1_unigram,f1_bigram,observed_diff,p_value,ci_lower,ci_upper,n_bootstrap,significant
+0.8464,0.8533,0.0069,0.0505,-0.0014,0.0151,10000,False
