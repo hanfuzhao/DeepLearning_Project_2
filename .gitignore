@@ -18,13 +18,17 @@ env/
 # Jupyter
 .ipynb_checkpoints/
 
-# Data (raw and processed data should not be committed — use DVC or document how to get it)
+# Data — raw source file and large outputs excluded; processed splits committed
 data/raw/*
 data/processed/*
 data/outputs/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !data/outputs/.gitkeep
+# Allow the three dataset splits to be committed
+!data/processed/train.csv
+!data/processed/val.csv
+!data/processed/test.csv
 
 # Models — binary files tracked via Git LFS
 !models/
