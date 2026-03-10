@@ -1,0 +1,4 @@
+,accuracy,precision,recall,f1,auc
+Naive Baseline,0.5241,0.0,0.0,0.0,0.5
+TF-IDF + LR,0.8659,0.8561,0.8633,0.8597,0.9381
+DistilBERT,0.9195,0.9259,0.9031,0.9143,0.9782

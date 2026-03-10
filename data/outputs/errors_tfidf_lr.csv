@@ -1,0 +1,6 @@
+text,true_label,predicted_label,confidence
+hellmann's heir's conduct unbefitting a mayonnaise magnate,1,0,0.0016138590205300183
+'you are donald trump th president of the united states ' trump reads from faded tattoo on wrist,1,0,0.0025329662161775327
+gamers rejoice this potion restores hp,1,0,0.003466950697671203
+doing academic time,0,1,0.9910788696770416
+comey 'what can i say i'm just a catty bitch from new jersey and i live for drama',1,0,0.009161351703960319
