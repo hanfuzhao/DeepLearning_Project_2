@@ -1,0 +1,17 @@
+# ── API server ──────────────────────────────────────────────────────────────
+fastapi
+uvicorn[standard]
+pydantic
+python-multipart
+httpx
+python-dotenv
+
+# ── NLP / Inference ─────────────────────────────────────────────────────────
+transformers
+torch
+numpy
+
+# ── Training (only needed for train.py) ─────────────────────────────────────
+datasets
+scikit-learn
+accelerate

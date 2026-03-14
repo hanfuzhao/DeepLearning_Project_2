@@ -37,7 +37,7 @@ export default function App() {
             borderRadius: '4px', padding: '2px 10px',
             fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 500,
           }}>
-            RoBERTa-base
+            DistilBERT
           </span>
         </div>
       </header>
@@ -75,7 +75,7 @@ export default function App() {
       <footer style={{ borderTop: '1px solid var(--border)', padding: '20px 24px', textAlign: 'center', marginTop: '40px' }}>
         <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', lineHeight: 1.7 }}>
           For educational purposes only. Does not replace professional mental health support.
-          <br />NLP Product · 540 Hackathon 2026 · RoBERTa-base · SARC + Cyberbullying Classification
+          <br />NLP Product · 540 Project 2 · DistilBERT · Sarcasm + Cyberbullying Detection
         </p>
       </footer>
     </div>
